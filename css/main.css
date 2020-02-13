@@ -1293,7 +1293,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #25583d;
+  background: #e5ff29;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2451,7 +2451,7 @@ mjx-container + br {
   .content-wrap {
     border-radius: initial;
     padding: 20px;
-    width: 100%;
+    width: auto;
   }
 }
 .footer-inner {

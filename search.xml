@@ -59,8 +59,8 @@
 <h5 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h5><p>KNN is an easy algorithm to classify different categories just by calculating the distance between testing data and training data. There are three ways to calculae the distance and the no-loops way is the most efficient. But it is not a very effective way to correctly classify different categories. The accuracy is not very high as we can see from the result. </p>
 ]]></content>
       <tags>
-        <tag>python</tag>
         <tag>Machine Learning</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -121,9 +121,5 @@
 <p><img src="/2020/02/13/Setup/1581308206901.png" alt="1581308206901"></p>
 <p>Change the path to your python’s path, then you can import all those packages successfully. That means you can enjoy the coding. </p>
 ]]></content>
-      <tags>
-        <tag>Machine Learning</tag>
-        <tag>Python</tag>
-      </tags>
   </entry>
 </search>

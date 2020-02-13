@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>BaniaBlog</title>
+  
+  <subtitle>Sharing Technology</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-02-13T06:26:25.562Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Bania</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Setup</title>
+    <link href="http://yoursite.com/2020/02/13/Setup-1/"/>
+    <id>http://yoursite.com/2020/02/13/Setup-1/</id>
+    <published>2020-02-13T06:26:25.000Z</published>
+    <updated>2020-02-13T06:26:25.562Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CS231n assignment1 Environment Setup</title>
+    <link href="http://yoursite.com/2020/02/13/Setup/"/>
+    <id>http://yoursite.com/2020/02/13/Setup/</id>
+    <published>2020-02-13T05:56:34.000Z</published>
+    <updated>2020-02-13T06:37:41.648Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Environment-setup"><a href="#Environment-setup" class="headerlink" title="Environment setup"></a>Environment setup</h3><p>In this session, I will illustrate how to setup an environment for the CS231n assignment1. It is a little difference from the way we carry out our projects before. I know that many people would use Pycharm to do python programming, which is convenient and easy. However, the requirement of the environment for assigment1 is based on ubuntu system and ipython. If you do not have ubuntu system, you can download it from its website or if you are using window system, you can get it from microsoft store.  The one I use is Ubuntu 18.04 LTS. I assume that you have downloaded ubuntu system and use python3.x, and now I will show you the whole environment setup for the assignment. </p><p>In the website: <a href="http://cs231n.github.io/assignments2017/assignment1/" target="_blank" rel="noopener">http://cs231n.github.io/assignments2017/assignment1/</a> , you can see that there are some instructions of the environment setup. </p><ol><li><p>Get the code as a zip file in the website. Click here and you can download the file. Please remember the path of the file.</p><p><img src="/2020/02/13/Setup/1581303993815.png" alt="1581303993815"></p></li><li><p>In your ubuntu setup a virtual environment. </p><p>1) Enter your file.</p></li></ol><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd assignment1          <span class="comment"># this is the path of your file</span></span><br></pre></td></tr></table></figure><p>If your file is stored on your windows system, you should remember to add <strong>/mnt/</strong> before the path  eg. <strong>/mnt/c/Users/zhong201707030308/Desktop/assignment1</strong> </p><p>​     2) Install vituralenv if you do not have it.</p><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip <span class="keyword">install</span> virtualenv      <span class="comment"># This may already be installed</span></span><br></pre></td></tr></table></figure><p>​    3)Create a virtual environment.</p><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv -p python3 .env       <span class="comment"># Create a virtual environment (python3)</span></span><br></pre></td></tr></table></figure><p>   4)Activate your virtual environment.</p><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .env/bin/activate         <span class="comment"># Activate the virtual environment</span></span><br></pre></td></tr></table></figure><p>Now that you have created your virtual environment, in this environment you can use python3. Note that you do not have any necessary packages now, so you need to download them. </p><ol><li>Download all the necessary packages. </li></ol><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> -r requirements.txt  <span class="comment"># Install dependencies</span></span><br></pre></td></tr></table></figure><p>The requirements.txt has listed all the libraries you may have to use.  You may also face the same problem as I did when installing the libraries. The first one may be downloading numpy==1.10.4. The easiest way to deal with it is downloading the latest version. It is quite tricky sometimes when you are installing some packages. In this case, the only thing you can do is to search on the internet. The second problem is site==0.0.1. You will be prompted that the compute can find any version of site, but you do not need to worry about it. You can just ignore this package which does not matter the programming. </p><p>After that ,you have installed some necessary packages, but if you need other libraries you can just install them by yourself. Next, I will show you other way to install these packages. </p><ol><li><p>Start programming. </p><p>1）Download dataset.</p></li></ol><p>In the assignment1 file enter the path:  <strong>cs231n/datasets</strong>, and then use <strong>./get_datasets.sh</strong> to get the dataset.</p><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd cs231n/datasets</span><br><span class="line"></span><br><span class="line">./get_datasets.sh</span><br></pre></td></tr></table></figure><p>When you have implemented the command above, you will find that in the <strong>datasets/cifar-10-batches-py</strong> file there are many datasets. You can click readme.html to see the descriptions of the data.</p><p><img src="/2020/02/13/Setup/1581306454897.png" alt="1581306454897"></p><p>​      2) Start your jupyter notebook.</p><p>Use the command : <strong>jupyter notebook</strong> and you can start it. In this case, you can get the url and then open your notebook on the website. </p><p><img src="/2020/02/13/Setup/1581306823481.png" alt="1581306823481"></p><p><img src="/2020/02/13/Setup/1581306996635.png" alt="1581306996635"></p><p>If you want to create a .py file and want to run it on the notebook, you should click <strong>New</strong> on the top right  corner and then choose python3. </p><p><img src="/2020/02/13/Setup/1581307248848.png" alt="1581307248848"></p><p>Then you can program your code and run it. </p><p><img src="/2020/02/13/Setup/1581307297557.png" alt="1581307297557"></p><p>However, you may face the last and troublesome problem that is you can not import the packages which you have installed before. That is because the python3 jupyter notebook uses is not the same with the python3 that you have created in the virtual environment. You need to change the path of it. </p><p>First, check the path of python3 you use in the virtual environment. </p><p><img src="/2020/02/13/Setup/1581307763017.png" alt="1581307763017"></p><p>The path is where your python.exe exists. </p><p>Second, check the path of python3 the jupyter notebook uses. </p><p><img src="/2020/02/13/Setup/1581307874063.png" alt="1581307874063"></p><p>The first time I run this code, I got <strong>“/usr/bin/python3”</strong>. You can notice that the two paths are different. Now, you should modify the path of the jupyter notebook. </p><p><img src="/2020/02/13/Setup/1581308104047.png" alt="1581308104047"></p><p>Then enter the path shown above in your ubuntu and modify the kernel.json .</p><p><img src="/2020/02/13/Setup/1581308180368.png" alt="1581308180368"></p><p><img src="/2020/02/13/Setup/1581308206901.png" alt="1581308206901"></p><p>Change the path to your python’s path, then you can import all those packages successfully. That means you can enjoy the coding. </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Environment-setup&quot;&gt;&lt;a href=&quot;#Environment-setup&quot; class=&quot;headerlink&quot; title=&quot;Environment setup&quot;&gt;&lt;/a&gt;Environment setup&lt;/h3&gt;&lt;p&gt;In this se
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+      <category term="Machine Learning" scheme="http://yoursite.com/tags/Machine-Learning/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2020/02/13/hello-world/"/>
+    <id>http://yoursite.com/2020/02/13/hello-world/</id>
+    <published>2020-02-13T04:35:06.782Z</published>
+    <updated>2020-02-13T04:35:06.782Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>

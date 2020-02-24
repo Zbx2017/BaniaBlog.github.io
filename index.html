@@ -346,10 +346,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-02-18 08:41:58 / Modified: 14:03:50" itemprop="dateCreated datePublished" datetime="2020-02-18T08:41:58+08:00">2020-02-18</time>
+              <time title="Created: 2020-02-18 08:41:58" itemprop="dateCreated datePublished" datetime="2020-02-18T08:41:58+08:00">2020-02-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-24 12:06:19" itemprop="dateModified" datetime="2020-02-24T12:06:19+08:00">2020-02-24</time>
+              </span>
 
           
 
@@ -394,7 +400,7 @@ Re(x)=max(0,x)</script><p>There are also many activation functions, you can choo
 <ol>
 <li>Backpropagation</li>
 </ol>
-<p>After we get the computational graph, we can use backpropagation to get the gradients. Because we use softmax loss, we can obtain the gradient of $\frac{\partial L}{\partial y}$, then we can use the chain rule to get all the gradients. </p>
+<p>After we get the computational graph, we can use backpropagation to get the gradients. Because we use softmax loss, we can obtain the gradient of $\frac{\partial L}{\partial y}​$​, then we can use the chain rule to get all the gradients. </p>
 <script type="math/tex; mode=display">
 \frac{\partial L}{\partial W_2} = \frac{\partial L}{\partial y}\frac{\partial y}{\partial W_2} = y_1^{T}\frac{\partial L}{\partial y} \\
 \frac{\partial L}{\partial b_2} = \frac{\partial L}{\partial y}\frac{\partial y}{\partial b_2} = \bold{1}_{(1\times N)}\frac{\partial L}{\partial y} \\
@@ -1052,6 +1058,57 @@ Re(x)=max(0,x)</script><p>There are also many activation functions, you can choo
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+        loader: {
+          load: ['[tex]/mhchem']
+        },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

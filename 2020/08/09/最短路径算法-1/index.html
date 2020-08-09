@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="最短路径算法-1BFS和DFS都可以用来找两点之间的最短路径，这里我将介绍其他几种最短路径的算法。 爬山法（Hill-Climbing）在图的表示中，我介绍了如何自定义类来表示图，其中就有启发式距离的表示。爬山法是在DFS上基于启发式距离的一种算法。有点类似于贪婪算法，每一次选择离目标顶点最近的顶点进行遍历，因此只需对DFS的代码增加选取离目标最近顶点即可。 1234567891011121314">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最短路径算法-1">
+<meta property="og:url" content="http://yoursite.com/2020/08/09/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%AE%97%E6%B3%95-1/index.html">
+<meta property="og:site_name" content="BaniaBlog">
+<meta property="og:description" content="最短路径算法-1BFS和DFS都可以用来找两点之间的最短路径，这里我将介绍其他几种最短路径的算法。 爬山法（Hill-Climbing）在图的表示中，我介绍了如何自定义类来表示图，其中就有启发式距离的表示。爬山法是在DFS上基于启发式距离的一种算法。有点类似于贪婪算法，每一次选择离目标顶点最近的顶点进行遍历，因此只需对DFS的代码增加选取离目标最近顶点即可。 1234567891011121314">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-09T09:23:36.990Z">
+<meta property="article:modified_time" content="2020-08-09T09:23:37.131Z">
+<meta property="article:author" content="Bania">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content=" Java">
+<meta property="article:tag" content=" Machine Learning">
+<meta property="article:tag" content=" Data Science">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/08/09/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%AE%97%E6%B3%95-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>最短路径算法-1 | BaniaBlog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="BaniaBlog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BaniaBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Sharing Technology</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/Zbx2017/Zbx2017.github.io" class="github-corner" title="Bania GitHub" aria-label="Bania GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+    
+  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/09/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%AE%97%E6%B3%95-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bania">
+      <meta itemprop="description" content="A platform for discussing programming and technology">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BaniaBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          最短路径算法-1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-09 17:23:36 / Modified: 17:23:37" itemprop="dateCreated datePublished" datetime="2020-08-09T17:23:36+08:00">2020-08-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="最短路径算法-1"><a href="#最短路径算法-1" class="headerlink" title="最短路径算法-1"></a>最短路径算法-1</h3><p>BFS和DFS都可以用来找两点之间的最短路径，这里我将介绍其他几种最短路径的算法。</p>
+<h5 id="爬山法（Hill-Climbing）"><a href="#爬山法（Hill-Climbing）" class="headerlink" title="爬山法（Hill-Climbing）"></a>爬山法（Hill-Climbing）</h5><p>在图的表示中，我介绍了如何自定义类来表示图，其中就有启发式距离的表示。爬山法是在DFS上基于启发式距离的一种算法。有点类似于贪婪算法，每一次选择离目标顶点最近的顶点进行遍历，因此只需对DFS的代码增加选取离目标最近顶点即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hill_climbing</span><span class="params">(graph, start, goal)</span>:</span></span><br><span class="line">    pathlist=[(start,)]</span><br><span class="line">    <span class="keyword">if</span> start == goal:</span><br><span class="line">        <span class="keyword">return</span> [start]</span><br><span class="line">    <span class="keyword">while</span> len(pathlist) &gt; <span class="number">0</span>:</span><br><span class="line">        curr_path = pathlist.pop(<span class="number">0</span>)</span><br><span class="line">        curr_node = curr_path[<span class="number">-1</span>]</span><br><span class="line">        new_nodes = graph.get_connected_nodes(curr_node)</span><br><span class="line">        <span class="keyword">if</span> len(curr_path) &gt; <span class="number">1</span>:</span><br><span class="line">            new_nodes = [node <span class="keyword">for</span> node <span class="keyword">in</span> new_nodes <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> curr_path]</span><br><span class="line">        <span class="keyword">if</span> goal <span class="keyword">in</span> new_nodes:</span><br><span class="line">            goal_path = curr_path + (goal, )</span><br><span class="line">            <span class="keyword">return</span> list(goal_path)</span><br><span class="line">        <span class="comment"># 根据启发式距离对顶点进行排序</span></span><br><span class="line">        dis = [(graph.get_heuristic(node, goal), node) <span class="keyword">for</span> node <span class="keyword">in</span> new_nodes]</span><br><span class="line">        dis = sorted(dis)</span><br><span class="line">        <span class="comment"># 取距离最近的顶点</span></span><br><span class="line">        new_nodes = [node[<span class="number">1</span>] <span class="keyword">for</span> node <span class="keyword">in</span> dis]</span><br><span class="line">        new_paths = [curr_path + (node,) <span class="keyword">for</span> node <span class="keyword">in</span> new_nodes]</span><br><span class="line">        new_paths.extend(pathlist)</span><br><span class="line">        pathlist = new_paths</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> []</span><br></pre></td></tr></table></figure>
+<p>爬山法运行起来要比DFS效率要高，因为省去了一些顶点，但是缺点在于容易陷入局部最优，而不能找到全局最优的路径。</p>
+<h5 id="集束搜索（Beam-Search）"><a href="#集束搜索（Beam-Search）" class="headerlink" title="集束搜索（Beam Search）"></a>集束搜索（Beam Search）</h5><p>前面的爬山法是在DFS算法基础上改进的，而集束搜索是在BFS算法基础上改进的。BFS会遍历每一层级的所有顶点，而集束搜索会选择前k个离目标顶点的启发式距离最近的顶点进行遍历，k称为集束宽度（beam width）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">beam_search</span><span class="params">(graph, start, goal, beam_width)</span>:</span></span><br><span class="line">    pathlist = [(start,)]</span><br><span class="line">    <span class="keyword">if</span> start == goal:</span><br><span class="line">        <span class="keyword">return</span> [start]</span><br><span class="line">    <span class="keyword">while</span> len(pathlist) &gt; <span class="number">0</span>:</span><br><span class="line">        new_paths = []</span><br><span class="line">        <span class="comment"># 取前beam_width个路径</span></span><br><span class="line">        pathlist = pathlist[:beam_width]</span><br><span class="line">        <span class="keyword">while</span> len(pathlist) &gt; <span class="number">0</span>:</span><br><span class="line">            curr_path = pathlist.pop(<span class="number">0</span>)</span><br><span class="line">            curr_node = curr_path[<span class="number">-1</span>]</span><br><span class="line">            new_nodes = graph.get_connected_nodes(curr_node)</span><br><span class="line">            <span class="keyword">if</span> len(curr_path) &gt; <span class="number">1</span>:</span><br><span class="line">                new_nodes = [node <span class="keyword">for</span> node <span class="keyword">in</span> new_nodes <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> curr_path]</span><br><span class="line">            <span class="keyword">if</span> goal <span class="keyword">in</span> new_nodes:</span><br><span class="line">                goal_path = curr_path + (goal,)</span><br><span class="line">                <span class="keyword">return</span> list(goal_path)</span><br><span class="line">            new_paths += [curr_path + (node,) <span class="keyword">for</span> node <span class="keyword">in</span> new_nodes]</span><br><span class="line">        pathlist.extend(new_paths)</span><br><span class="line">        <span class="comment"># sort pathlist</span></span><br><span class="line">        dis = [(graph.get_heuristic(path[<span class="number">-1</span>], goal), path) <span class="keyword">for</span> path <span class="keyword">in</span> pathlist]</span><br><span class="line">        dis = sorted(dis)</span><br><span class="line">        pathlist = [path[<span class="number">1</span>] <span class="keyword">for</span> path <span class="keyword">in</span> dis]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> []</span><br></pre></td></tr></table></figure>
+<h5 id="分支界定法（branch-and-bound）"><a href="#分支界定法（branch-and-bound）" class="headerlink" title="分支界定法（branch and bound）"></a>分支界定法（branch and bound）</h5><p>前面的两种算法都是基于启发式距离，而路径最短往往说的是实际的路径长度，分支界定法就是基于实际的路径长度，每次选路径最短进行遍历。因此需要一个方法来统计到目前顶点的累积路径长度：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">path_length</span><span class="params">(graph, node_names)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    node_names:遍历过的顶点</span></span><br><span class="line"><span class="string">    return:返回累积路径长度</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    length = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; len(node_names) - <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> graph.are_connected(node_names[i], node_names[i+<span class="number">1</span>]):</span><br><span class="line">            length += graph.get_edge(node_names[i], node_names[i+<span class="number">1</span>]).length</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> length</span><br></pre></td></tr></table></figure>
+<p>同时，只需将爬山法的对启发式距离排序的程序改为对所有路径按累积路径长度进行排序即可，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">branch_and_bound</span><span class="params">(graph, start, goal)</span>:</span></span><br><span class="line">    pathlist = [(start,)]</span><br><span class="line">    <span class="keyword">if</span> start == goal:</span><br><span class="line">        <span class="keyword">return</span> [start]</span><br><span class="line">    goal_path = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">while</span> len(pathlist) &gt; <span class="number">0</span>:</span><br><span class="line">        curr_path = pathlist.pop(<span class="number">0</span>)</span><br><span class="line">        curr_node = curr_path[<span class="number">-1</span>]</span><br><span class="line">        new_nodes = graph.get_connected_nodes(curr_node)</span><br><span class="line">        <span class="keyword">if</span> len(curr_path) &gt; <span class="number">1</span>:</span><br><span class="line">            new_nodes = [node <span class="keyword">for</span> node <span class="keyword">in</span> new_nodes <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> curr_path]</span><br><span class="line">        <span class="keyword">if</span> goal <span class="keyword">in</span> new_nodes <span class="keyword">and</span> goal_path:</span><br><span class="line">            new_goal_path = curr_path + (goal,)</span><br><span class="line">            <span class="keyword">if</span> path_length(graph, new_goal_path) &lt; path_length(graph, goal_path):</span><br><span class="line">                goal_path = new_goal_path</span><br><span class="line">        <span class="keyword">elif</span> goal <span class="keyword">in</span> new_nodes <span class="keyword">and</span> <span class="keyword">not</span> goal_path:</span><br><span class="line">            goal_path = curr_path + (goal,)</span><br><span class="line">        new_paths = [curr_path + (node,) <span class="keyword">for</span> node <span class="keyword">in</span> new_nodes]</span><br><span class="line">        new_paths.extend(pathlist)</span><br><span class="line">        pathlist = new_paths</span><br><span class="line">        <span class="comment"># 按路径长度对所有路径进行排序</span></span><br><span class="line">        dis = [(path_length(graph, path), path) <span class="keyword">for</span> path <span class="keyword">in</span> pathlist]</span><br><span class="line">        dis = sorted(dis)</span><br><span class="line">        <span class="comment"># 取最短的路径</span></span><br><span class="line">        pathlist = [path[<span class="number">1</span>] <span class="keyword">for</span> path <span class="keyword">in</span> dis]</span><br><span class="line">    <span class="keyword">if</span> goal_path:</span><br><span class="line">        <span class="keyword">return</span> list(goal_path)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> []</span><br></pre></td></tr></table></figure>
+<h5 id="A-算法"><a href="#A-算法" class="headerlink" title="A* 算法"></a>A* 算法</h5><p>A*算法是同时基于累积路径长度和启发式距离的算法，对于程序的编写，我们只需在上述代码中增加启发式距离即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_star</span><span class="params">(graph, start, goal)</span>:</span></span><br><span class="line">    pathlist = [(start,)]</span><br><span class="line">    <span class="keyword">if</span> start == goal:</span><br><span class="line">        <span class="keyword">return</span> [start]</span><br><span class="line">    goal_path = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">while</span> len(pathlist) &gt; <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> goal_path:</span><br><span class="line">        curr_path = pathlist.pop(<span class="number">0</span>)</span><br><span class="line">        curr_node = curr_path[<span class="number">-1</span>]</span><br><span class="line">        new_nodes = graph.get_connected_nodes(curr_node)</span><br><span class="line">        <span class="keyword">if</span> len(curr_path) &gt; <span class="number">1</span>:</span><br><span class="line">            new_nodes = [node <span class="keyword">for</span> node <span class="keyword">in</span> new_nodes <span class="keyword">if</span> node <span class="keyword">not</span> <span class="keyword">in</span> curr_path]</span><br><span class="line">        <span class="keyword">if</span> goal <span class="keyword">in</span> new_nodes:</span><br><span class="line">            goal_path = curr_path + (goal,)</span><br><span class="line">        new_paths = [curr_path + (node,) <span class="keyword">for</span> node <span class="keyword">in</span> new_nodes]</span><br><span class="line">        new_paths.extend(pathlist)</span><br><span class="line">        pathlist = new_paths</span><br><span class="line">        <span class="comment"># 按 累计长度+启发式距离 对所有路径进行排序</span></span><br><span class="line">        dis = [(path_length(graph, path)+graph.get_heuristic(path[<span class="number">-1</span>], goal),</span><br><span class="line">                path) <span class="keyword">for</span> path <span class="keyword">in</span> pathlist]</span><br><span class="line">        dis = sorted(dis)</span><br><span class="line">        pathlist = [path[<span class="number">1</span>] <span class="keyword">for</span> path <span class="keyword">in</span> dis]</span><br><span class="line">    <span class="keyword">if</span> goal_path:</span><br><span class="line">        <span class="keyword">return</span> list(goal_path)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> []</span><br></pre></td></tr></table></figure>
+<p>A<em> 算法是其中效率比较高的算法，但其运行的好坏，在于启发式距离设定的好坏。如果get_heuristic(node, goal)始终小于等于节点node到goal的实际距离，则A</em>算法保证一定能够找到最短路径。但是当get_heuristic(node, goal)的值越小，算法将遍历越多的节点，也就导致算法越慢。</p>
+<p>如果get_heuristic(node, goal)大于节点node到goal的实际距离，则A*算法不能保证找到最短路径，不过此时会很快。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/09/DFS/" rel="prev" title="DFS">
+      <i class="fa fa-chevron-left"></i> DFS
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#最短路径算法-1"><span class="nav-number">1.</span> <span class="nav-text">最短路径算法-1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#爬山法（Hill-Climbing）"><span class="nav-number">1.0.1.</span> <span class="nav-text">爬山法（Hill-Climbing）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#集束搜索（Beam-Search）"><span class="nav-number">1.0.2.</span> <span class="nav-text">集束搜索（Beam Search）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分支界定法（branch-and-bound）"><span class="nav-number">1.0.3.</span> <span class="nav-text">分支界定法（branch and bound）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#A-算法"><span class="nav-number">1.0.4.</span> <span class="nav-text">A* 算法</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Bania</p>
+  <div class="site-description" itemprop="description">A platform for discussing programming and technology</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bania</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+  Total visits: <span id="busuanzi_value_site_pv"></span> times
+  <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+  <span id="busuanzi_value_site_uv"></span>people have viewed my bolg.
+</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

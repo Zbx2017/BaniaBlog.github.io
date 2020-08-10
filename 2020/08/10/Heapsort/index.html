@@ -20,26 +20,23 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="​—-title:Heapsort mathjax:true 堆排序（Heapsort）Heap property堆数据结构是数组对象，它可以用近似完全二叉树进行表示。例如下面数组A，可以表示成a图的二叉树形式。  设一节点的索引为i，从上图可以看到，其父节点的索引和子节点的索引与该节点的索引有如下关系：  parent(i) &#x3D; i&#x2F;&#x2F;2  \quad(&#x2F;&#x2F; 表示取整)\\ left(i) &#x3D;">
+  <meta name="description" content="堆排序（Heapsort）Heap property堆数据结构是数组对象，它可以用近似完全二叉树进行表示。例如下面数组A，可以表示成a图的二叉树形式。  设一节点的索引为i，从上图可以看到，其父节点的索引和子节点的索引与该节点的索引有如下关系：  parent(i) &#x3D; i&#x2F;&#x2F;2  \quad(&#x2F;&#x2F; 表示取整)\\ left(i) &#x3D; 2i\\ right(i) &#x3D; 2i + 1\\例如，元素14">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Heapsort">
-<meta property="og:url" content="http://yoursite.com/2020/08/09/Heapsort/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/08/10/Heapsort/index.html">
 <meta property="og:site_name" content="BaniaBlog">
-<meta property="og:description" content="​—-title:Heapsort mathjax:true 堆排序（Heapsort）Heap property堆数据结构是数组对象，它可以用近似完全二叉树进行表示。例如下面数组A，可以表示成a图的二叉树形式。  设一节点的索引为i，从上图可以看到，其父节点的索引和子节点的索引与该节点的索引有如下关系：  parent(i) &#x3D; i&#x2F;&#x2F;2  \quad(&#x2F;&#x2F; 表示取整)\\ left(i) &#x3D;">
+<meta property="og:description" content="堆排序（Heapsort）Heap property堆数据结构是数组对象，它可以用近似完全二叉树进行表示。例如下面数组A，可以表示成a图的二叉树形式。  设一节点的索引为i，从上图可以看到，其父节点的索引和子节点的索引与该节点的索引有如下关系：  parent(i) &#x3D; i&#x2F;&#x2F;2  \quad(&#x2F;&#x2F; 表示取整)\\ left(i) &#x3D; 2i\\ right(i) &#x3D; 2i + 1\\例如，元素14">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/08/09/Heapsort/heap.png">
-<meta property="og:image" content="http://yoursite.com/2020/08/09/Heapsort/heapify.png">
-<meta property="article:published_time" content="2020-08-09T09:23:36.990Z">
-<meta property="article:modified_time" content="2020-08-10T04:55:01.685Z">
+<meta property="og:image" content="http://yoursite.com/2020/08/10/Heapsort/heap.png">
+<meta property="og:image" content="http://yoursite.com/2020/08/10/Heapsort/heapify.png">
+<meta property="article:published_time" content="2020-08-10T03:41:58.000Z">
+<meta property="article:modified_time" content="2020-08-10T05:03:32.494Z">
 <meta property="article:author" content="Bania">
 <meta property="article:tag" content="Python">
-<meta property="article:tag" content=" Java">
-<meta property="article:tag" content=" Machine Learning">
-<meta property="article:tag" content=" Data Science">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/08/09/Heapsort/heap.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/08/10/Heapsort/heap.png">
 
-<link rel="canonical" href="http://yoursite.com/2020/08/09/Heapsort/">
+<link rel="canonical" href="http://yoursite.com/2020/08/10/Heapsort/">
 
 
 <script id="page-configurations">
@@ -182,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/09/Heapsort/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/10/Heapsort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -204,16 +201,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-09 17:23:36" itemprop="dateCreated datePublished" datetime="2020-08-09T17:23:36+08:00">2020-08-09</time>
+              <time title="Created: 2020-08-10 11:41:58 / Modified: 13:03:32" itemprop="dateCreated datePublished" datetime="2020-08-10T11:41:58+08:00">2020-08-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-10 12:55:01" itemprop="dateModified" datetime="2020-08-10T12:55:01+08:00">2020-08-10</time>
-              </span>
 
           
 
@@ -226,11 +217,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <hr>
-<p>​—-<br>title:Heapsort</p>
-<h2 id="mathjax-true"><a href="#mathjax-true" class="headerlink" title="mathjax:true"></a>mathjax:true</h2><hr>
-<h3 id="堆排序（Heapsort）"><a href="#堆排序（Heapsort）" class="headerlink" title="堆排序（Heapsort）"></a>堆排序（Heapsort）</h3><h5 id="Heap-property"><a href="#Heap-property" class="headerlink" title="Heap property"></a>Heap property</h5><p>堆数据结构是数组对象，它可以用近似完全二叉树进行表示。例如下面数组A，可以表示成a图的二叉树形式。</p>
-<p><img src="/2020/08/09/Heapsort/heap.png" alt="img"></p>
+        <h3 id="堆排序（Heapsort）"><a href="#堆排序（Heapsort）" class="headerlink" title="堆排序（Heapsort）"></a>堆排序（Heapsort）</h3><h5 id="Heap-property"><a href="#Heap-property" class="headerlink" title="Heap property"></a>Heap property</h5><p>堆数据结构是数组对象，它可以用近似完全二叉树进行表示。例如下面数组A，可以表示成a图的二叉树形式。</p>
+<p><img src="/2020/08/10/Heapsort/heap.png" alt="img"></p>
 <p>设一节点的索引为i，从上图可以看到，其父节点的索引和子节点的索引与该节点的索引有如下关系：</p>
 <script type="math/tex; mode=display">
 parent(i) = i//2  \quad(// 表示取整)\\</script><script type="math/tex; mode=display">
@@ -242,7 +230,7 @@ A[parent(i)] \ge A[i]</script><p>对于min heaps，其特性刚好相反：</p>
 <script type="math/tex; mode=display">
 A[parent(i)] \le A[i]</script><p>但是任意给出一个数组，不一定满足堆的上述特性，因此需要相应的操作来保持堆的特性，下面以max heaps为例，讲述堆的相关操作。</p>
 <h5 id="Max-heapify"><a href="#Max-heapify" class="headerlink" title="Max heapify"></a>Max heapify</h5><p>max heapify是用来保持堆的特性，对某一节点，判断该节点是否满足堆的特性，如果不满足则将该节点移动合适的位置。</p>
-<p><img src="/2020/08/09/Heapsort/heapify.png" alt="img"></p>
+<p><img src="/2020/08/10/Heapsort/heapify.png" alt="img"></p>
 <p>如上图，元素4不满足最大堆的特性因为它要比14和7都要小，因此4需要和14和7中最大的一个元素互换位置，以保证父节点的值大于等于子节点的值。互换位置后再次判断是否满足特性，这时仍然不满足，因此需要再次移动直到图c的位置。</p>
 <p>因为当移动节点后仍然是进行相同的操作：判断是否满足特性，不满足则移动。因此可以用递归的方式进行编写代码，程序的时间复杂度为O(logn)。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapify</span><span class="params">(arr, n, i)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    arr:数组</span></span><br><span class="line"><span class="string">    n：数组的长度</span></span><br><span class="line"><span class="string">    i: 当前节点的索引</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    r = <span class="number">2</span>*i + <span class="number">1</span></span><br><span class="line">    l = <span class="number">2</span>*i</span><br><span class="line">    <span class="comment"># 判断左子节点是否大于当前节点</span></span><br><span class="line">    <span class="keyword">if</span> l &lt; n <span class="keyword">and</span> arr[l] &gt; arr[i]:</span><br><span class="line">        largest = l</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        largest = i</span><br><span class="line">    <span class="comment"># 判断右子节点是否大于当前节点 </span></span><br><span class="line">    <span class="keyword">if</span> r &lt; n <span class="keyword">and</span> arr[r] &gt; arr[largest]:</span><br><span class="line">        largest = r</span><br><span class="line">    <span class="comment"># 不满足特性，交换节点位置，交换后再次进行heapify</span></span><br><span class="line">    <span class="keyword">if</span> largest <span class="keyword">is</span> <span class="keyword">not</span> i:</span><br><span class="line">        arr[i], arr[largest] = arr[largest], arr[i]</span><br><span class="line">        heapify(arr, n, largest)</span><br></pre></td></tr></table></figure>
@@ -261,6 +249,9 @@ A[parent(i)] \le A[i]</script><p>但是任意给出一个数组，不一定满�
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
 
         
 
@@ -331,7 +322,7 @@ A[parent(i)] \le A[i]</script><p>但是任意给出一个数组，不一定满�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mathjax-true"><span class="nav-number">1.</span> <span class="nav-text">mathjax:true</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#堆排序（Heapsort）"><span class="nav-number">1.1.</span> <span class="nav-text">堆排序（Heapsort）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Heap-property"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">Heap property</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Max-heapify"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">Max heapify</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Build-max-heaps"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">Build max -heaps</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Heapsort-algorithm"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">Heapsort algorithm</span></a></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#堆排序（Heapsort）"><span class="nav-number">1.</span> <span class="nav-text">堆排序（Heapsort）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Heap-property"><span class="nav-number">1.0.1.</span> <span class="nav-text">Heap property</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Max-heapify"><span class="nav-number">1.0.2.</span> <span class="nav-text">Max heapify</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Build-max-heaps"><span class="nav-number">1.0.3.</span> <span class="nav-text">Build max -heaps</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Heapsort-algorithm"><span class="nav-number">1.0.4.</span> <span class="nav-text">Heapsort algorithm</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -455,6 +446,57 @@ A[parent(i)] \le A[i]</script><p>但是任意给出一个数组，不一定满�
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+        loader: {
+          load: ['[tex]/mhchem']
+        },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

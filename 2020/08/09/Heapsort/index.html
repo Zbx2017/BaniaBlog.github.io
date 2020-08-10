@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/08/09/Heapsort/heap.png">
 <meta property="og:image" content="http://yoursite.com/2020/08/09/Heapsort/heapify.png">
 <meta property="article:published_time" content="2020-08-09T09:23:36.990Z">
-<meta property="article:modified_time" content="2020-08-10T04:33:06.548Z">
+<meta property="article:modified_time" content="2020-08-10T04:40:53.996Z">
 <meta property="article:author" content="Bania">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content=" Java">
@@ -212,7 +212,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-10 12:33:06" itemprop="dateModified" datetime="2020-08-10T12:33:06+08:00">2020-08-10</time>
+                <time title="Modified: 2020-08-10 12:40:53" itemprop="dateModified" datetime="2020-08-10T12:40:53+08:00">2020-08-10</time>
               </span>
 
           
@@ -452,6 +452,57 @@ A[parent(i)] \le A[i]</script><p>但是任意给出一个数组，不一定满�
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+        loader: {
+          load: ['[tex]/mhchem']
+        },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

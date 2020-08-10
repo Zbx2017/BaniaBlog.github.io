@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Heapsort</title>
+    <url>/2020/08/09/Heapsort/</url>
+    <content><![CDATA[<h3 id="堆排序（Heapsort）"><a href="#堆排序（Heapsort）" class="headerlink" title="堆排序（Heapsort）"></a>堆排序（Heapsort）</h3><h5 id="Heap-property"><a href="#Heap-property" class="headerlink" title="Heap property"></a>Heap property</h5><p>堆数据结构是数组对象，它可以用近似完全二叉树进行表示。例如下面数组A，可以表示成a图的二叉树形式。</p>
+<p><img src="/2020/08/09/Heapsort/heap.png" alt="img"></p>
+<p>设一节点的索引为i，从上图可以看到，其父节点的索引和子节点的索引与该节点的索引有如下关系：</p>
+<script type="math/tex; mode=display">
+parent(i) = i//2  \quad(// 表示取整) \\
+left(i) = 2i \\
+right(i) = 2i + 1</script><p>例如，元素14的索引为2，其父节点索引为2//2 = 1，左子节点索引为2x2 = 4, 右子节点为2x2+1 = 5</p>
+<p>堆有最大堆（max heaps）和最小堆（min heaps）结构，两种结构分别满足不同的特性。对于max heaps，除根节点外，所有节点的父节点的值要大于或等于该节点的值。也即：</p>
+<script type="math/tex; mode=display">
+A[parent(i)] \ge A[i]</script><p>对于min heaps，其特性刚好相反：</p>
+<script type="math/tex; mode=display">
+A[parent(i)] \le A[i]</script><p>但是任意给出一个数组，不一定满足堆的上述特性，因此需要相应的操作来保持堆的特性，下面以max heaps为例，讲述堆的相关操作。</p>
+<h5 id="Max-heapify"><a href="#Max-heapify" class="headerlink" title="Max heapify"></a>Max heapify</h5><p>max heapify是用来保持堆的特性，对某一节点，判断该节点是否满足堆的特性，如果不满足则将该节点移动合适的位置。</p>
+<p><img src="/2020/08/09/Heapsort/heapify.png" alt="img"></p>
+<p>如上图，元素4不满足最大堆的特性因为它要比14和7都要小，因此4需要和14和7中最大的一个元素互换位置，以保证父节点的值大于等于子节点的值。互换位置后再次判断是否满足特性，这时仍然不满足，因此需要再次移动直到图c的位置。</p>
+<p>因为当移动节点后仍然是进行相同的操作：判断是否满足特性，不满足则移动。因此可以用递归的方式进行编写代码，程序的时间复杂度为O(logn)。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapify</span><span class="params">(arr, n, i)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    arr:数组</span></span><br><span class="line"><span class="string">    n：数组的长度</span></span><br><span class="line"><span class="string">    i: 当前节点的索引</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    r = <span class="number">2</span>*i + <span class="number">1</span></span><br><span class="line">    l = <span class="number">2</span>*i</span><br><span class="line">    <span class="comment"># 判断左子节点是否大于当前节点</span></span><br><span class="line">    <span class="keyword">if</span> l &lt; n <span class="keyword">and</span> arr[l] &gt; arr[i]:</span><br><span class="line">        largest = l</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        largest = i</span><br><span class="line">    <span class="comment"># 判断右子节点是否大于当前节点 </span></span><br><span class="line">    <span class="keyword">if</span> r &lt; n <span class="keyword">and</span> arr[r] &gt; arr[largest]:</span><br><span class="line">        largest = r</span><br><span class="line">    <span class="comment"># 不满足特性，交换节点位置，交换后再次进行heapify</span></span><br><span class="line">    <span class="keyword">if</span> largest <span class="keyword">is</span> <span class="keyword">not</span> i:</span><br><span class="line">        arr[i], arr[largest] = arr[largest], arr[i]</span><br><span class="line">        heapify(arr, n, largest)</span><br></pre></td></tr></table></figure>
+<p>有了上述操作后，我们就可以根据数组来建立max heaps.</p>
+<h5 id="Build-max-heaps"><a href="#Build-max-heaps" class="headerlink" title="Build max -heaps"></a>Build max -heaps</h5><p>堆的本质还是一个数组，Max-Heapify只是改变了元素的位置，使其满足最大堆的特性，因此需要对每一个元素检查其是否满足特性。但是A[n/2 + 1,…,n]这部分的元素都是子节点，因为2x(n/2 + 1)&gt;n，超出了索引范围，为此我们只需考虑前半部分的元素，其时间复杂度可以很容易得分析出为O(nlogn)。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_max_heaps</span><span class="params">(arr, n)</span>:</span></span><br><span class="line">    i = n//<span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> i &gt;= <span class="number">0</span>:</span><br><span class="line">        heapify(arr, n, i)</span><br><span class="line">        i -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h5 id="Heapsort-algorithm"><a href="#Heapsort-algorithm" class="headerlink" title="Heapsort algorithm"></a>Heapsort algorithm</h5><p>建立好的最大堆如图c，第一个元素是数组中的最大的元素，而索引靠后的元素是数组中较小的元素。如果我们需要升序排序，那么每一次可以将第一个元素和最后一个元素交换，改变数组的元素排列。交换后利用max-heapify，保持最大堆特性，这时第一个元素是前n-1个元素中最大的元素，将其放在n-1的位置处，以此类推即可完成排序。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    n = len(arr)</span><br><span class="line">	build_max_heaps(arr, n)</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(n<span class="number">-1</span>, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">        arr[k], arr[<span class="number">0</span>] = arr[<span class="number">0</span>], arr[k]</span><br><span class="line">        heapify(arr, k, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = [<span class="number">13</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">heapSort(arr)</span><br><span class="line">n = len(arr)</span><br><span class="line">print(<span class="string">"Sorted array is"</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    print(<span class="string">" &#123;&#125;"</span>.format(arr[i]), end=<span class="string">""</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># output: </span></span><br><span class="line"><span class="comment"># Sorted array is</span></span><br><span class="line"><span class="comment"># 5 6 7 11 12 13</span></span><br></pre></td></tr></table></figure>
+<p>整个程序的时间复杂度为O(nlogn)</p>
+]]></content>
+  </entry>
+  <entry>
     <title>最短路径算法-1</title>
     <url>/2020/08/09/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%AE%97%E6%B3%95-1/</url>
     <content><![CDATA[<h3 id="最短路径算法-1"><a href="#最短路径算法-1" class="headerlink" title="最短路径算法-1"></a>最短路径算法-1</h3><p>BFS和DFS都可以用来找两点之间的最短路径，这里我将介绍其他几种最短路径的算法。</p>

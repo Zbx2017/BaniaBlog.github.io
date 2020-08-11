@@ -28,7 +28,7 @@
 <meta property="og:description" content="Priority queue(优先队列)队列是一种满足先进先出原则的数据结构，在Python中利用列表就可以简单地实现一个队列。首先需要定义一个列表，接在在列表中加入元素，最后利用pop方法将最先加入的元素取出，即可实现一个队列。 1234567queue &#x3D; []queue.append(2)queue.append(3)queue.append(1)queue.pop(0)# output:">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-11T09:39:15.164Z">
-<meta property="article:modified_time" content="2020-08-11T09:39:15.311Z">
+<meta property="article:modified_time" content="2020-08-11T09:42:18.523Z">
 <meta property="article:author" content="Bania">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content=" Java">
@@ -201,8 +201,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-11 17:39:15" itemprop="dateCreated datePublished" datetime="2020-08-11T17:39:15+08:00">2020-08-11</time>
+              <time title="Created: 2020-08-11 17:39:15 / Modified: 17:42:18" itemprop="dateCreated datePublished" datetime="2020-08-11T17:39:15+08:00">2020-08-11</time>
             </span>
 
           
@@ -241,6 +242,9 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"></span><br><span class="line">q = []</span><br><span class="line"></span><br><span class="line">heapq.heappush(q, (<span class="number">2</span>, <span class="string">'code'</span>))</span><br><span class="line">heapq.heappush(q, (<span class="number">1</span>, <span class="string">'eat'</span>))</span><br><span class="line">heapq.heappush(q, (<span class="number">3</span>, <span class="string">'sleep'</span>))</span><br><span class="line"></span><br><span class="line">print(heapq.heappop(q))</span><br><span class="line"></span><br><span class="line"><span class="comment"># output：(1, 'eat')</span></span><br></pre></td></tr></table></figure>
 <p>还有queue中的<code>PriorityQueue</code>，其时间复杂度与heapq的一样，区别在于<code>PriorityQueue</code>是同步的，提供了锁语义来支持多个并发的生产者和消费者。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> queue <span class="keyword">import</span> PriorityQueue</span><br><span class="line"></span><br><span class="line">q = PriorityQueue()</span><br><span class="line"></span><br><span class="line">q.put((<span class="number">2</span>, <span class="string">'code'</span>))</span><br><span class="line">q.put((<span class="number">1</span>, <span class="string">'eat'</span>))</span><br><span class="line">q.put((<span class="number">3</span>, <span class="string">'sleep'</span>))</span><br><span class="line"></span><br><span class="line">print(q.get())</span><br><span class="line"><span class="comment"># output：(1, 'eat')</span></span><br></pre></td></tr></table></figure>
+<p>参考资料：</p>
+<p>1.算法导论第三版</p>
+<p>2.<a href="https://geek-docs.com/python/python-examples/python-priority-queue.html" target="_blank" rel="noopener">https://geek-docs.com/python/python-examples/python-priority-queue.html</a></p>
 
     </div>
 

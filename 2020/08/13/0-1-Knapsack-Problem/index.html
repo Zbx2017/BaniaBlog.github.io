@@ -20,35 +20,25 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Environment setupIn this session, I will illustrate how to setup an environment for the CS231n assignment1. It is a little difference from the way we carry out our projects before. I know that many pe">
+  <meta name="description" content="0-1 Knapsack Problem下面我们利用动态规划来解决一个实际问题叫做0-1背包问题。  如上有两个数组，一个是重量，一个是对应的价值。每个东西只能放一次，现在给出一个容量C的背包，问怎么装这些东西使得价值最大。 对于每一个东西，都有两种选择，放进背包还是不放，因此5个东西有2^5种方法。这个问题是个最大化问题，那么每一次决定都要使得value最大化。 首先我们用简单的递归来实现。 从">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CS231n assignment1 Environment Setup">
-<meta property="og:url" content="http://yoursite.com/2020/02/13/Setup/index.html">
+<meta property="og:title" content="0-1 Knapsack Problem">
+<meta property="og:url" content="http://yoursite.com/2020/08/13/0-1-Knapsack-Problem/index.html">
 <meta property="og:site_name" content="BaniaBlog">
-<meta property="og:description" content="Environment setupIn this session, I will illustrate how to setup an environment for the CS231n assignment1. It is a little difference from the way we carry out our projects before. I know that many pe">
+<meta property="og:description" content="0-1 Knapsack Problem下面我们利用动态规划来解决一个实际问题叫做0-1背包问题。  如上有两个数组，一个是重量，一个是对应的价值。每个东西只能放一次，现在给出一个容量C的背包，问怎么装这些东西使得价值最大。 对于每一个东西，都有两种选择，放进背包还是不放，因此5个东西有2^5种方法。这个问题是个最大化问题，那么每一次决定都要使得value最大化。 首先我们用简单的递归来实现。 从">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/02/13/Setup/1581303993815.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/13/Setup/1581306454897.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/13/Setup/1581306823481.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/13/Setup/1581306996635.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/13/Setup/1581307248848.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/13/Setup/1581307297557.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/13/Setup/1581307763017.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/13/Setup/1581307874063.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/13/Setup/1581308104047.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/13/Setup/1581308180368.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/13/Setup/1581308206901.png">
-<meta property="article:published_time" content="2020-02-13T05:56:34.000Z">
-<meta property="article:modified_time" content="2020-02-13T08:44:18.314Z">
+<meta property="og:image" content="http://yoursite.com/2020/08/13/0-1-Knapsack-Problem/table.png">
+<meta property="article:published_time" content="2020-08-13T07:16:35.819Z">
+<meta property="article:modified_time" content="2020-08-13T07:16:35.972Z">
 <meta property="article:author" content="Bania">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content=" Java">
 <meta property="article:tag" content=" Machine Learning">
 <meta property="article:tag" content=" Data Science">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/02/13/Setup/1581303993815.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/08/13/0-1-Knapsack-Problem/table.png">
 
-<link rel="canonical" href="http://yoursite.com/2020/02/13/Setup/">
+<link rel="canonical" href="http://yoursite.com/2020/08/13/0-1-Knapsack-Problem/">
 
 
 <script id="page-configurations">
@@ -60,7 +50,7 @@
   };
 </script>
 
-  <title>CS231n assignment1 Environment Setup | BaniaBlog</title>
+  <title>0-1 Knapsack Problem | BaniaBlog</title>
   
 
 
@@ -191,7 +181,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/Setup/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/0-1-Knapsack-Problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -204,7 +194,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          CS231n assignment1 Environment Setup
+          0-1 Knapsack Problem
         </h1>
 
         <div class="post-meta">
@@ -213,9 +203,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-02-13 13:56:34 / Modified: 16:44:18" itemprop="dateCreated datePublished" datetime="2020-02-13T13:56:34+08:00">2020-02-13</time>
+              <time title="Created: 2020-08-13 15:16:35" itemprop="dateCreated datePublished" datetime="2020-08-13T15:16:35+08:00">2020-08-13</time>
             </span>
 
           
@@ -229,60 +218,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Environment-setup"><a href="#Environment-setup" class="headerlink" title="Environment setup"></a>Environment setup</h3><p>In this session, I will illustrate how to setup an environment for the CS231n assignment1. It is a little difference from the way we carry out our projects before. I know that many people would use Pycharm to do python programming, which is convenient and easy. However, the requirement of the environment for assigment1 is based on ubuntu system and ipython. If you do not have ubuntu system, you can download it from its website or if you are using window system, you can get it from microsoft store.  The one I use is Ubuntu 18.04 LTS. I assume that you have downloaded ubuntu system and use python3.x, and now I will show you the whole environment setup for the assignment. </p>
-<p>In the website: <a href="http://cs231n.github.io/assignments2017/assignment1/" target="_blank" rel="noopener">http://cs231n.github.io/assignments2017/assignment1/</a> , you can see that there are some instructions of the environment setup. </p>
-<ol>
-<li><p>Get the code as a zip file in the website. Click here and you can download the file. Please remember the path of the file.</p>
-<p><img src="/2020/02/13/Setup/1581303993815.png" alt="1581303993815"></p>
-</li>
-<li><p>In your ubuntu setup a virtual environment. </p>
-<p>1) Enter your file.</p>
-</li>
-</ol>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd assignment1          <span class="comment"># this is the path of your file</span></span><br></pre></td></tr></table></figure>
-<p>If your file is stored on your windows system, you should remember to add <strong>/mnt/</strong> before the path  eg. <strong>/mnt/c/Users/zhong201707030308/Desktop/assignment1</strong> </p>
-<p>​     2) Install vituralenv if you do not have it.</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip <span class="keyword">install</span> virtualenv      <span class="comment"># This may already be installed</span></span><br></pre></td></tr></table></figure>
-<p>​    3)Create a virtual environment.</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv -p python3 .env       <span class="comment"># Create a virtual environment (python3)</span></span><br></pre></td></tr></table></figure>
-<p>   4)Activate your virtual environment.</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .env/bin/activate         <span class="comment"># Activate the virtual environment</span></span><br></pre></td></tr></table></figure>
-<p>Now that you have created your virtual environment, in this environment you can use python3. Note that you do not have any necessary packages now, so you need to download them. </p>
-<ol>
-<li>Download all the necessary packages. </li>
-</ol>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> -r requirements.txt  <span class="comment"># Install dependencies</span></span><br></pre></td></tr></table></figure>
-<p>The requirements.txt has listed all the libraries you may have to use.  You may also face the same problem as I did when installing the libraries. The first one may be downloading numpy==1.10.4. The easiest way to deal with it is downloading the latest version. It is quite tricky sometimes when you are installing some packages. In this case, the only thing you can do is to search on the internet. The second problem is site==0.0.1. You will be prompted that the compute can find any version of site, but you do not need to worry about it. You can just ignore this package which does not matter the programming. </p>
-<p>After that ,you have installed some necessary packages, but if you need other libraries you can just install them by yourself. Next, I will show you other way to install these packages. </p>
-<ol>
-<li><p>Start programming. </p>
-<p>1）Download dataset.</p>
-</li>
-</ol>
-<p>In the assignment1 file enter the path:  <strong>cs231n/datasets</strong>, and then use <strong>./get_datasets.sh</strong> to get the dataset.</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd cs231n/datasets</span><br><span class="line"></span><br><span class="line">./get_datasets.sh</span><br></pre></td></tr></table></figure>
-<p>When you have implemented the command above, you will find that in the <strong>datasets/cifar-10-batches-py</strong> file there are many datasets. You can click readme.html to see the descriptions of the data.</p>
-<p><img src="/2020/02/13/Setup/1581306454897.png" alt="1581306454897"></p>
-<p>​      2) Start your jupyter notebook.</p>
-<p>Use the command : <strong>jupyter notebook</strong> and you can start it. In this case, you can get the url and then open your notebook on the website. </p>
-<p><img src="/2020/02/13/Setup/1581306823481.png" alt="1581306823481"></p>
-<p><img src="/2020/02/13/Setup/1581306996635.png" alt="1581306996635"></p>
-<p>If you want to create a .py file and want to run it on the notebook, you should click <strong>New</strong> on the top right  corner and then choose python3. </p>
-<p><img src="/2020/02/13/Setup/1581307248848.png" alt="1581307248848"></p>
-<p>Then you can program your code and run it. </p>
-<p><img src="/2020/02/13/Setup/1581307297557.png" alt="1581307297557"></p>
-<p>However, you may face the last and troublesome problem that is you can not import the packages which you have installed before. That is because the python3 jupyter notebook uses is not the same with the python3 that you have created in the virtual environment. You need to change the path of it. </p>
-<p>First, check the path of python3 you use in the virtual environment. </p>
-<p><img src="/2020/02/13/Setup/1581307763017.png" alt="1581307763017"></p>
-<p>The path is where your python.exe exists. </p>
-<p>Second, check the path of python3 the jupyter notebook uses. </p>
-<p><img src="/2020/02/13/Setup/1581307874063.png" alt="1581307874063"></p>
-<p>The first time I run this code, I got <strong>“/usr/bin/python3”</strong>. You can notice that the two paths are different. Now, you should modify the path of the jupyter notebook. </p>
-<p><img src="/2020/02/13/Setup/1581308104047.png" alt="1581308104047"></p>
-<p>Then enter the path shown above in your ubuntu and modify the kernel.json .</p>
-<p><img src="/2020/02/13/Setup/1581308180368.png" alt="1581308180368"></p>
-<p><img src="/2020/02/13/Setup/1581308206901.png" alt="1581308206901"></p>
-<p>Change the path to your python’s path, then you can import all those packages successfully. That means you can enjoy the coding. </p>
+        <h3 id="0-1-Knapsack-Problem"><a href="#0-1-Knapsack-Problem" class="headerlink" title="0-1 Knapsack Problem"></a>0-1 Knapsack Problem</h3><p>下面我们利用动态规划来解决一个实际问题叫做0-1背包问题。</p>
+<p><img src="/2020/08/13/0-1-Knapsack-Problem/table.png" alt="img"></p>
+<p>如上有两个数组，一个是重量，一个是对应的价值。每个东西只能放一次，现在给出一个容量C的背包，问怎么装这些东西使得价值最大。</p>
+<p>对于每一个东西，都有两种选择，放进背包还是不放，因此5个东西有2^5种方法。这个问题是个最大化问题，那么每一次决定都要使得value最大化。</p>
+<p>首先我们用简单的递归来实现。</p>
+<p>从后往前遍历，每个物体有放和不放的情况，如果是不放，那么直接跳到前一个物体，如果放，此时的value是当前放进的物体的value和剩余还没有放的value之后。</p>
+<p>1.递归退出条件：东西装完了或者容量达到最大了<br>2.递归过程：<br>设函数为knp(n, C)<br>放进背包：v1 = v[n] + knp(n-1, C-w[i])<br>不放：v2 = knp(n-1,C)<br>vmax = max(v1, v2)<br>同时考虑一定不能放进背包的情况：重量大于容量<br>3.放回结果</p>
+<p>代码如下，设c为10，计算得出的最大价值为16，与人工计算的结果相同。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">w = [<span class="literal">None</span>, <span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">v = [<span class="literal">None</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knp</span><span class="params">(n, c)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span> <span class="keyword">or</span> c ==<span class="number">0</span> :</span><br><span class="line">        result = <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> w[n] &gt; c:</span><br><span class="line">        result = knp(n<span class="number">-1</span>, c)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        temp1 = v[n] + knp(n<span class="number">-1</span>, c-w[n])</span><br><span class="line">        temp2 = knp(n<span class="number">-1</span>, c)</span><br><span class="line">        result = max(temp1, temp2)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">    </span><br><span class="line">print(knp(<span class="number">5</span>,<span class="number">10</span>))</span><br><span class="line"><span class="comment"># output: 16</span></span><br></pre></td></tr></table></figure>
+<p>递归的方法尝试了所有的情况，其时间复杂度为$O(2^n)$，现在我们用动态规划的方法，修改上面的代码，同时用一个列表keep来标记哪个物体被放进背包里面。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">w = [<span class="literal">None</span>, <span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">v = [<span class="literal">None</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>]</span><br><span class="line">arr = np.zeros([<span class="number">6</span>,<span class="number">11</span>])</span><br><span class="line">keep = [<span class="number">0</span>]*<span class="number">6</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knp</span><span class="params">(n, c)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> arr[n][c] != <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> arr[n][c]</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span> <span class="keyword">or</span> c ==<span class="number">0</span> :</span><br><span class="line">        result = <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> w[n] &gt; c:</span><br><span class="line">        result = knp(n<span class="number">-1</span>, c)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        temp1 = v[n] + knp(n<span class="number">-1</span>, c-w[n])</span><br><span class="line">        temp2 = knp(n<span class="number">-1</span>, c)</span><br><span class="line">        <span class="keyword">if</span> temp1 &gt; temp2:</span><br><span class="line">            result = temp1</span><br><span class="line">            keep[n] = <span class="number">1</span> </span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result = temp2</span><br><span class="line">    arr[n][c] = result</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">print(knp(<span class="number">5</span>,<span class="number">10</span>))</span><br><span class="line"><span class="comment"># output: 16</span></span><br><span class="line">print(keep)</span><br><span class="line"><span class="comment"># [0, 1, 1, 1, 1, 0]</span></span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -297,11 +243,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/02/13/KNN/" rel="next" title="KNN">
-      KNN <i class="fa fa-chevron-right"></i>
+    <a href="/2020/08/13/%E4%BB%80%E4%B9%88%E6%98%AF%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="prev" title="什么是动态规划">
+      <i class="fa fa-chevron-left"></i> 什么是动态规划
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -361,7 +307,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Environment-setup"><span class="nav-number">1.</span> <span class="nav-text">Environment setup</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-1-Knapsack-Problem"><span class="nav-number">1.</span> <span class="nav-text">0-1 Knapsack Problem</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -485,6 +431,57 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+        loader: {
+          load: ['[tex]/mhchem']
+        },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

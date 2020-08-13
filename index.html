@@ -177,7 +177,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/0-1-Knapsack-Problem/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/Longest%20Common%20Subsequence/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -191,7 +191,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/13/0-1-Knapsack-Problem/" class="post-title-link" itemprop="url">0-1 Knapsack Problem</a>
+            <a href="/2020/08/13/Longest%20Common%20Subsequence/" class="post-title-link" itemprop="url">Longest Common Subsequence</a>
         </h1>
 
         <div class="post-meta">
@@ -200,8 +200,81 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-13 15:16:35" itemprop="dateCreated datePublished" datetime="2020-08-13T15:16:35+08:00">2020-08-13</time>
+              <time title="Created: 2020-08-13 15:48:44 / Modified: 15:48:54" itemprop="dateCreated datePublished" datetime="2020-08-13T15:48:44+08:00">2020-08-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Longest-Common-Subsequence"><a href="#Longest-Common-Subsequence" class="headerlink" title="Longest Common Subsequence"></a>Longest Common Subsequence</h3><p>从两个字符串中找到公共的最长子串：<br>例如：text1 = “abcad”<br>test2 = “acd”<br>最长公共子串为acd，放回3</p>
+<p>如果直接使用暴力求解，效率低，同时问题会比较复杂，要考虑很多情况，比如，”abdac” 和”acd”，此时的最长子串为ac或者ad，放回为2，这里的子串是有一定的顺序的。而不能直接用两个for循环，依次比较每个位置的字符就能解决的。这种求法需要把所有的情况包括进行，比较复杂。</p>
+<p>第二种方法是递归法，只需要考虑一个最小问题即可。</p>
+<p>考虑两种情况：</p>
+<p>text1 = “….x” 和 text2=”,,,,x”<br>假设text1长度为n，text2长度为m<br>省略的地方表示其他的字符，我们从后往前看。<br>最后一个字符相同，所以剩下的相同的子串会出现在前面的字符串中，因此我们只需要考虑text1剩下的n-1长度部分和text2的m-1长度部分</p>
+<p>第二种情况是<br>text1 = “….y” 和 text2=”,,,,x”<br>最后一个字符不等，那么text1的前n-1的字符串可能会和text2有相同的子串，text2的前m-1的字符串也可能会和text1有相同的子串，最后取它们的最大的情况。</p>
+<p>因此我们可以写出递归的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonSubsequence</span><span class="params">(self, text1, text2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type text1: str</span></span><br><span class="line"><span class="string">        :type text2: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># brute force too complicated</span></span><br><span class="line">        <span class="comment"># recurse time exceeded</span></span><br><span class="line">        <span class="comment"># dp method</span></span><br><span class="line">        <span class="keyword">return</span> self.lcs(text1, text2, len(text1), len(text2))</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lcs</span><span class="params">(self,text1, text2, l1, l2)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> l1 == <span class="number">0</span> <span class="keyword">or</span> l2 == <span class="number">0</span>:</span><br><span class="line">            result = <span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> text1[l1<span class="number">-1</span>] == text2[l2<span class="number">-1</span>]:</span><br><span class="line">            result = self.lcs(text1, text2, l1<span class="number">-1</span>, l2<span class="number">-1</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp1 = self.lcs(text1,text2,l1<span class="number">-1</span>,l2)</span><br><span class="line">            temp2 = self.lcs(text1,text2,l1,l2<span class="number">-1</span>)</span><br><span class="line">            result = max(temp1, temp2)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">s = Solution()</span><br><span class="line">text1 = <span class="string">"abcde"</span></span><br><span class="line">text2 = <span class="string">"ace"</span></span><br><span class="line">s.longestCommonSubsequence(text1, text2)</span><br><span class="line"><span class="comment"># output: 3</span></span><br></pre></td></tr></table></figure>
+<p>在递归的基础上增加一个数组来保存每一次计算的值，那么就变成动态规划的memo方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonSubsequence</span><span class="params">(self, text1, text2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type text1: str</span></span><br><span class="line"><span class="string">        :type text2: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># brute force too complicated</span></span><br><span class="line">        <span class="comment"># recurse time exceeded</span></span><br><span class="line">        <span class="comment"># dp method</span></span><br><span class="line">        l1 = len(text1) + <span class="number">1</span></span><br><span class="line">        l2 = len(text2) + <span class="number">1</span></span><br><span class="line">        arr = [[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(l2)] <span class="keyword">for</span> i <span class="keyword">in</span> range(l1)]</span><br><span class="line">        <span class="keyword">return</span> self.lcs(text1, text2, len(text1), len(text2), arr)</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lcs</span><span class="params">(self,text1, text2, l1, l2, arr)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> arr[l1][l2] != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> arr[l1][l2]</span><br><span class="line">        <span class="keyword">if</span> l1 == <span class="number">0</span> <span class="keyword">or</span> l2 == <span class="number">0</span>:</span><br><span class="line">            result = <span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> text1[l1<span class="number">-1</span>] == text2[l2<span class="number">-1</span>]:</span><br><span class="line">            result = self.lcs(text1, text2, l1<span class="number">-1</span>, l2<span class="number">-1</span>, arr) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            temp1 = self.lcs(text1,text2,l1<span class="number">-1</span>,l2, arr)</span><br><span class="line">            temp2 = self.lcs(text1,text2,l1,l2<span class="number">-1</span>, arr)</span><br><span class="line">            result = max(temp1, temp2)</span><br><span class="line">        arr[l1][l2] = result</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">s = Solution()</span><br><span class="line">text1 = <span class="string">"abcde"</span></span><br><span class="line">text2 = <span class="string">"ace"</span></span><br><span class="line">s.longestCommonSubsequence(text1, text2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output: 3</span></span><br></pre></td></tr></table></figure>
+<p>将上述的递归方法改成从下到上的模式，就是bottom-up 方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonSubsequence</span><span class="params">(self, text1, text2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type text1: str</span></span><br><span class="line"><span class="string">        :type text2: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># brute force too complicated</span></span><br><span class="line">        <span class="comment"># recurse time exceeded</span></span><br><span class="line">        <span class="comment"># dp method</span></span><br><span class="line">        <span class="comment"># bottom up</span></span><br><span class="line">        n = len(text1)</span><br><span class="line">        m = len(text2)</span><br><span class="line">        arr = [[<span class="number">0</span>]*(m+<span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(n+<span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,m+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> text1[i<span class="number">-1</span>] == text2[j<span class="number">-1</span>]:</span><br><span class="line">                    arr[i][j] = <span class="number">1</span> + arr[i<span class="number">-1</span>][j<span class="number">-1</span>]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    arr[i][j] = max(arr[i][j<span class="number">-1</span>],arr[i<span class="number">-1</span>][j])</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> arr[<span class="number">-1</span>][<span class="number">-1</span>]</span><br><span class="line">s = Solution()</span><br><span class="line">text1 = <span class="string">"abcde"</span></span><br><span class="line">text2 = <span class="string">"ace"</span></span><br><span class="line">s.longestCommonSubsequence(text1, text2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output:3</span></span><br></pre></td></tr></table></figure>
+<p>其核心的迭代公式是没有变的，时间复杂度为O(mn)，其运算的效率要比前两种方法快一点，代码也更简洁一点。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/0-1%20Knapsack%20Problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Bania">
+      <meta itemprop="description" content="A platform for discussing programming and technology">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BaniaBlog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/13/0-1%20Knapsack%20Problem/" class="post-title-link" itemprop="url">0-1 Knapsack Problem</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-13 15:16:35 / Modified: 15:21:23" itemprop="dateCreated datePublished" datetime="2020-08-13T15:16:35+08:00">2020-08-13</time>
             </span>
 
           
@@ -216,9 +289,9 @@
 
       
           <h3 id="0-1-Knapsack-Problem"><a href="#0-1-Knapsack-Problem" class="headerlink" title="0-1 Knapsack Problem"></a>0-1 Knapsack Problem</h3><p>下面我们利用动态规划来解决一个实际问题叫做0-1背包问题。</p>
-<p><img src="/2020/08/13/0-1-Knapsack-Problem/table.png" alt="img"></p>
+<p><img src="/2020/08/13/0-1%20Knapsack%20Problem/table.png" alt="img"></p>
 <p>如上有两个数组，一个是重量，一个是对应的价值。每个东西只能放一次，现在给出一个容量C的背包，问怎么装这些东西使得价值最大。</p>
-<p>对于每一个东西，都有两种选择，放进背包还是不放，因此5个东西有2^5种方法。这个问题是个最大化问题，那么每一次决定都要使得value最大化。</p>
+<p>对于每一个东西，都有两种选择，放进背包还是不放，因此5个东西有$2^5$种方法。这个问题是个最大化问题，那么每一次决定都要使得value最大化。</p>
 <p>首先我们用简单的递归来实现。</p>
 <p>从后往前遍历，每个物体有放和不放的情况，如果是不放，那么直接跳到前一个物体，如果放，此时的value是当前放进的物体的value和剩余还没有放的value之后。</p>
 <p>1.递归退出条件：东西装完了或者容量达到最大了<br>2.递归过程：<br>设函数为knp(n, C)<br>放进背包：v1 = v[n] + knp(n-1, C-w[i])<br>不放：v2 = knp(n-1,C)<br>vmax = max(v1, v2)<br>同时考虑一定不能放进背包的情况：重量大于容量<br>3.放回结果</p>
@@ -269,8 +342,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-13 15:04:34" itemprop="dateCreated datePublished" datetime="2020-08-13T15:04:34+08:00">2020-08-13</time>
+              <time title="Created: 2020-08-13 15:04:34 / Modified: 15:21:15" itemprop="dateCreated datePublished" datetime="2020-08-13T15:04:34+08:00">2020-08-13</time>
             </span>
 
           
@@ -880,73 +954,6 @@ A[parent(i)] \le A[i]</script><p>但是任意给出一个数组，不一定满�
   
   
 
-      
-  
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/Dropout/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Bania">
-      <meta itemprop="description" content="A platform for discussing programming and technology">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BaniaBlog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/02/Dropout/" class="post-title-link" itemprop="url">Dropout</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-02 10:33:41 / Modified: 11:45:39" itemprop="dateCreated datePublished" datetime="2020-03-02T10:33:41+08:00">2020-03-02</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>In previous tasks, we only used <strong>L2</strong> regularization to prevent overfitting. It can be implemented by penalizing the squared magnitude of all parameters directly in the objective. And here we will learn another way of regularization: Dropout. It is a effective, simple regularization technique. The idea of Dropout is that we randomly choose the inputs while training, and then we create a thinner inputs for training. Note that for testing process we should not implement Dropout.  For more information, you can click the link and read the paper: <a href="http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf" target="_blank" rel="noopener">http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf</a></p>
-<p>The implementation of Dropout in Python is quite straightforward. We can use <code>np.random.binomial()</code> method to create a binary matrix with the shape of inputs then the some elements of inputs can be randomly set to zero. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dropout_forward</span><span class="params">(x, dropout_param)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Performs the forward pass for (inverted) dropout.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Inputs:</span></span><br><span class="line"><span class="string">    - x: Input data, of any shape</span></span><br><span class="line"><span class="string">    - dropout_param: A dictionary with the following keys:</span></span><br><span class="line"><span class="string">      - p: Dropout parameter. We drop each neuron output with probability p.</span></span><br><span class="line"><span class="string">      - mode: 'test' or 'train'. If the mode is train, then perform dropout;</span></span><br><span class="line"><span class="string">        if the mode is test, then just return the input.</span></span><br><span class="line"><span class="string">      - seed: Seed for the random number generator. Passing seed makes this</span></span><br><span class="line"><span class="string">        function deterministic, which is needed for gradient checking but not</span></span><br><span class="line"><span class="string">        in real networks.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Outputs:</span></span><br><span class="line"><span class="string">    - out: Array of the same shape as x.</span></span><br><span class="line"><span class="string">    - cache: tuple (dropout_param, mask). In training mode, mask is the dropout</span></span><br><span class="line"><span class="string">      mask that was used to multiply the input; in test mode, mask is None.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    p, mode = dropout_param[<span class="string">'p'</span>], dropout_param[<span class="string">'mode'</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'seed'</span> <span class="keyword">in</span> dropout_param:</span><br><span class="line">        np.random.seed(dropout_param[<span class="string">'seed'</span>])</span><br><span class="line"></span><br><span class="line">    mask = <span class="literal">None</span></span><br><span class="line">    out = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> mode == <span class="string">'train'</span>:</span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line">        <span class="comment"># <span class="doctag">TODO:</span> Implement training phase forward pass for inverted dropout.   #</span></span><br><span class="line">        <span class="comment"># Store the dropout mask in the mask variable.                        #</span></span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line">        mask = np.random.binomial(<span class="number">1</span>, p, size=x.shape)</span><br><span class="line">        out = x * mask</span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line">        <span class="comment">#                           END OF YOUR CODE                          #</span></span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line">    <span class="keyword">elif</span> mode == <span class="string">'test'</span>:</span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line">        <span class="comment"># <span class="doctag">TODO:</span> Implement the test phase forward pass for inverted dropout.   #</span></span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line">        out = x </span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line">        <span class="comment">#                            END OF YOUR CODE                         #</span></span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line"></span><br><span class="line">    cache = (dropout_param, mask)</span><br><span class="line">    out = out.astype(x.dtype, copy=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> out, cache</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dropout_backward</span><span class="params">(dout, cache)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Perform the backward pass for (inverted) dropout.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Inputs:</span></span><br><span class="line"><span class="string">    - dout: Upstream derivatives, of any shape</span></span><br><span class="line"><span class="string">    - cache: (dropout_param, mask) from dropout_forward.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    dropout_param, mask = cache</span><br><span class="line">    mode = dropout_param[<span class="string">'mode'</span>]</span><br><span class="line"></span><br><span class="line">    dx = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">if</span> mode == <span class="string">'train'</span>:</span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line">        <span class="comment"># <span class="doctag">TODO:</span> Implement training phase backward pass for inverted dropout   #</span></span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line">        dx = dout * mask</span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line">        <span class="comment">#                          END OF YOUR CODE                           #</span></span><br><span class="line">        <span class="comment">#######################################################################</span></span><br><span class="line">    <span class="keyword">elif</span> mode == <span class="string">'test'</span>:</span><br><span class="line">        dx = dout</span><br><span class="line">    <span class="keyword">return</span> dx</span><br></pre></td></tr></table></figure>
-<p>Then you can see how Dropout influences the performance of training. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Train two identical nets, one with dropout and one without</span></span><br><span class="line">np.random.seed(<span class="number">231</span>)</span><br><span class="line">num_train = <span class="number">500</span></span><br><span class="line">small_data = &#123;</span><br><span class="line">  <span class="string">'X_train'</span>: data[<span class="string">'X_train'</span>][:num_train],</span><br><span class="line">  <span class="string">'y_train'</span>: data[<span class="string">'y_train'</span>][:num_train],</span><br><span class="line">  <span class="string">'X_val'</span>: data[<span class="string">'X_val'</span>],</span><br><span class="line">  <span class="string">'y_val'</span>: data[<span class="string">'y_val'</span>],</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">solvers = &#123;&#125;</span><br><span class="line">dropout_choices = [<span class="number">0</span>, <span class="number">0.75</span>]</span><br><span class="line"><span class="keyword">for</span> dropout <span class="keyword">in</span> dropout_choices:</span><br><span class="line">  model = FullyConnectedNet([<span class="number">500</span>], dropout=dropout)</span><br><span class="line">  print(dropout)</span><br><span class="line"></span><br><span class="line">  solver = Solver(model, small_data,</span><br><span class="line">                  num_epochs=<span class="number">25</span>, batch_size=<span class="number">100</span>,</span><br><span class="line">                  update_rule=<span class="string">'adam'</span>,</span><br><span class="line">                  optim_config=&#123;</span><br><span class="line">                    <span class="string">'learning_rate'</span>: <span class="number">5e-4</span>,</span><br><span class="line">                  &#125;,</span><br><span class="line">                  verbose=<span class="literal">True</span>, print_every=<span class="number">100</span>)</span><br><span class="line">  solver.train()</span><br><span class="line">  solvers[dropout] = solver</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">train_accs = []</span><br><span class="line">val_accs = []</span><br><span class="line"><span class="keyword">for</span> dropout <span class="keyword">in</span> dropout_choices:</span><br><span class="line">  solver = solvers[dropout]</span><br><span class="line">  train_accs.append(solver.train_acc_history[<span class="number">-1</span>])</span><br><span class="line">  val_accs.append(solver.val_acc_history[<span class="number">-1</span>])</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">3</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> dropout <span class="keyword">in</span> dropout_choices:</span><br><span class="line">  plt.plot(solvers[dropout].train_acc_history, <span class="string">'o'</span>, label=<span class="string">'%.2f dropout'</span> % dropout)</span><br><span class="line">plt.title(<span class="string">'Train accuracy'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Epoch'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Accuracy'</span>)</span><br><span class="line">plt.legend(ncol=<span class="number">2</span>, loc=<span class="string">'lower right'</span>)</span><br><span class="line">  </span><br><span class="line">plt.subplot(<span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">for</span> dropout <span class="keyword">in</span> dropout_choices:</span><br><span class="line">  plt.plot(solvers[dropout].val_acc_history, <span class="string">'o'</span>, label=<span class="string">'%.2f dropout'</span> % dropout)</span><br><span class="line">plt.title(<span class="string">'Val accuracy'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Epoch'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Accuracy'</span>)</span><br><span class="line">plt.legend(ncol=<span class="number">2</span>, loc=<span class="string">'lower right'</span>)</span><br><span class="line"></span><br><span class="line">plt.gcf().set_size_inches(<span class="number">15</span>, <span class="number">15</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/03/02/Dropout/1583120497975.png" alt="1583120497975"></p>
-<p>Obviously, both 0.75-Dropout and 0.00-Dropout do well in the training process with similar accuracy, while in testing process, 0.75-Dropout does better than 0.00-Dropout, which means it can effectively eliminate overfitting. </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1017,7 +1024,7 @@ A[parent(i)] \le A[i]</script><p>但是任意给出一个数组，不一定满�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

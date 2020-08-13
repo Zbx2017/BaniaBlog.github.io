@@ -28,7 +28,7 @@
 <meta property="og:description" content="什么是动态规划什么是动态规划？举一个例子来说明：Fibonacci number Fibonacci number 的定义是： F[n] &#x3D; F[n-1] + F[n-2], 当n&#x3D;1，2时 F[n] &#x3D; 1 那么如何用编程实现Fibonacci number（FN）的求解呢？如果我们定义一个函数fib(n)来求解n的FN，比如当我们求n&#x3D;5时的Fibonacci number，我们需要知道n&#x3D;4">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-13T07:04:34.185Z">
-<meta property="article:modified_time" content="2020-08-13T07:04:34.339Z">
+<meta property="article:modified_time" content="2020-08-13T07:21:15.433Z">
 <meta property="article:author" content="Bania">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content=" Java">
@@ -201,8 +201,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-13 15:04:34" itemprop="dateCreated datePublished" datetime="2020-08-13T15:04:34+08:00">2020-08-13</time>
+              <time title="Created: 2020-08-13 15:04:34 / Modified: 15:21:15" itemprop="dateCreated datePublished" datetime="2020-08-13T15:04:34+08:00">2020-08-13</time>
             </span>
 
           
@@ -251,7 +252,7 @@
       <i class="fa fa-chevron-left"></i> 最短路径算法-2
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/08/13/0-1-Knapsack-Problem/" rel="next" title="0-1 Knapsack Problem">
+    <a href="/2020/08/13/0-1%20Knapsack%20Problem/" rel="next" title="0-1 Knapsack Problem">
       0-1 Knapsack Problem <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -327,7 +328,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -437,6 +438,57 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+        loader: {
+          load: ['[tex]/mhchem']
+        },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

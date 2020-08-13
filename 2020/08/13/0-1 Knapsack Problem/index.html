@@ -20,25 +20,25 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="0-1 Knapsack Problem下面我们利用动态规划来解决一个实际问题叫做0-1背包问题。  如上有两个数组，一个是重量，一个是对应的价值。每个东西只能放一次，现在给出一个容量C的背包，问怎么装这些东西使得价值最大。 对于每一个东西，都有两种选择，放进背包还是不放，因此5个东西有2^5种方法。这个问题是个最大化问题，那么每一次决定都要使得value最大化。 首先我们用简单的递归来实现。 从">
+  <meta name="description" content="0-1 Knapsack Problem下面我们利用动态规划来解决一个实际问题叫做0-1背包问题。  如上有两个数组，一个是重量，一个是对应的价值。每个东西只能放一次，现在给出一个容量C的背包，问怎么装这些东西使得价值最大。 对于每一个东西，都有两种选择，放进背包还是不放，因此5个东西有$2^5$种方法。这个问题是个最大化问题，那么每一次决定都要使得value最大化。 首先我们用简单的递归来实现。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="0-1 Knapsack Problem">
-<meta property="og:url" content="http://yoursite.com/2020/08/13/0-1-Knapsack-Problem/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/08/13/0-1%20Knapsack%20Problem/index.html">
 <meta property="og:site_name" content="BaniaBlog">
-<meta property="og:description" content="0-1 Knapsack Problem下面我们利用动态规划来解决一个实际问题叫做0-1背包问题。  如上有两个数组，一个是重量，一个是对应的价值。每个东西只能放一次，现在给出一个容量C的背包，问怎么装这些东西使得价值最大。 对于每一个东西，都有两种选择，放进背包还是不放，因此5个东西有2^5种方法。这个问题是个最大化问题，那么每一次决定都要使得value最大化。 首先我们用简单的递归来实现。 从">
+<meta property="og:description" content="0-1 Knapsack Problem下面我们利用动态规划来解决一个实际问题叫做0-1背包问题。  如上有两个数组，一个是重量，一个是对应的价值。每个东西只能放一次，现在给出一个容量C的背包，问怎么装这些东西使得价值最大。 对于每一个东西，都有两种选择，放进背包还是不放，因此5个东西有$2^5$种方法。这个问题是个最大化问题，那么每一次决定都要使得value最大化。 首先我们用简单的递归来实现。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/08/13/0-1-Knapsack-Problem/table.png">
+<meta property="og:image" content="http://yoursite.com/2020/08/13/0-1%20Knapsack%20Problem/table.png">
 <meta property="article:published_time" content="2020-08-13T07:16:35.819Z">
-<meta property="article:modified_time" content="2020-08-13T07:16:35.972Z">
+<meta property="article:modified_time" content="2020-08-13T07:21:23.490Z">
 <meta property="article:author" content="Bania">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content=" Java">
 <meta property="article:tag" content=" Machine Learning">
 <meta property="article:tag" content=" Data Science">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/08/13/0-1-Knapsack-Problem/table.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/08/13/0-1%20Knapsack%20Problem/table.png">
 
-<link rel="canonical" href="http://yoursite.com/2020/08/13/0-1-Knapsack-Problem/">
+<link rel="canonical" href="http://yoursite.com/2020/08/13/0-1%20Knapsack%20Problem/">
 
 
 <script id="page-configurations">
@@ -181,7 +181,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/0-1-Knapsack-Problem/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/0-1%20Knapsack%20Problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -203,8 +203,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-08-13 15:16:35" itemprop="dateCreated datePublished" datetime="2020-08-13T15:16:35+08:00">2020-08-13</time>
+              <time title="Created: 2020-08-13 15:16:35 / Modified: 15:21:23" itemprop="dateCreated datePublished" datetime="2020-08-13T15:16:35+08:00">2020-08-13</time>
             </span>
 
           
@@ -219,9 +220,9 @@
 
       
         <h3 id="0-1-Knapsack-Problem"><a href="#0-1-Knapsack-Problem" class="headerlink" title="0-1 Knapsack Problem"></a>0-1 Knapsack Problem</h3><p>下面我们利用动态规划来解决一个实际问题叫做0-1背包问题。</p>
-<p><img src="/2020/08/13/0-1-Knapsack-Problem/table.png" alt="img"></p>
+<p><img src="/2020/08/13/0-1%20Knapsack%20Problem/table.png" alt="img"></p>
 <p>如上有两个数组，一个是重量，一个是对应的价值。每个东西只能放一次，现在给出一个容量C的背包，问怎么装这些东西使得价值最大。</p>
-<p>对于每一个东西，都有两种选择，放进背包还是不放，因此5个东西有2^5种方法。这个问题是个最大化问题，那么每一次决定都要使得value最大化。</p>
+<p>对于每一个东西，都有两种选择，放进背包还是不放，因此5个东西有$2^5$种方法。这个问题是个最大化问题，那么每一次决定都要使得value最大化。</p>
 <p>首先我们用简单的递归来实现。</p>
 <p>从后往前遍历，每个物体有放和不放的情况，如果是不放，那么直接跳到前一个物体，如果放，此时的value是当前放进的物体的value和剩余还没有放的value之后。</p>
 <p>1.递归退出条件：东西装完了或者容量达到最大了<br>2.递归过程：<br>设函数为knp(n, C)<br>放进背包：v1 = v[n] + knp(n-1, C-w[i])<br>不放：v2 = knp(n-1,C)<br>vmax = max(v1, v2)<br>同时考虑一定不能放进背包的情况：重量大于容量<br>3.放回结果</p>
@@ -247,7 +248,10 @@
     <a href="/2020/08/13/%E4%BB%80%E4%B9%88%E6%98%AF%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="prev" title="什么是动态规划">
       <i class="fa fa-chevron-left"></i> 什么是动态规划
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/13/Longest%20Common%20Subsequence/" rel="next" title="Longest Common Subsequence">
+      Longest Common Subsequence <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -321,7 +325,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
